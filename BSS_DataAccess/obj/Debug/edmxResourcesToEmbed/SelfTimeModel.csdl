@@ -1,0 +1,857 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SelfTimeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="COMPANY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ADDRESS_LINE1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ADDRESS_LINE2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="POST_CODE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="IS_DELETED" Type="Boolean" Nullable="false" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UP_BY" Type="Int32" />
+    <Property Name="UP_AT" Type="DateTime" Precision="3" />
+    <Property Name="LOGO_PATH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AGREEMENT_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AGREEMENT_PATH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTACT_USERID" Type="Int32" Nullable="false" />
+    <Property Name="CONTACT_NAME" Type="String" MaxLength="35" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="GUID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="COMPANY_ADMIN" Relationship="Self.FK_COMPANY_ADMIN_COMPANY" FromRole="COMPANY" ToRole="COMPANY_ADMIN" />
+    <NavigationProperty Name="COMPANY_PAYMENT" Relationship="Self.FK_COMPANY_PAYMENT_COMPANY1" FromRole="COMPANY" ToRole="COMPANY_PAYMENT" />
+    <NavigationProperty Name="PROJECTs" Relationship="Self.FK_PROJECT_COMPANY" FromRole="COMPANY" ToRole="PROJECT" />
+    <NavigationProperty Name="USER_PAYMENT" Relationship="Self.FK_USER_PAYMENT_COMPANY" FromRole="COMPANY" ToRole="USER_PAYMENT" />
+  </EntityType>
+  <EntityType Name="COMPANY_ADMIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+    <Property Name="USER_ID" Type="Int32" Nullable="false" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="COMPANY" Relationship="Self.FK_COMPANY_ADMIN_COMPANY" FromRole="COMPANY_ADMIN" ToRole="COMPANY" />
+    <NavigationProperty Name="COMPANY_ADMIN1" Relationship="Self.FK_COMPANY_ADMIN_COMPANY_ADMIN" FromRole="COMPANY_ADMIN" ToRole="COMPANY_ADMIN1" />
+    <NavigationProperty Name="COMPANY_ADMIN2" Relationship="Self.FK_COMPANY_ADMIN_COMPANY_ADMIN" FromRole="COMPANY_ADMIN1" ToRole="COMPANY_ADMIN" />
+  </EntityType>
+  <EntityType Name="COMPANY_PAYMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FROM_CUSTOMERID" Type="Int32" Nullable="false" />
+    <Property Name="TO_COMPANYID" Type="Int32" Nullable="false" />
+    <Property Name="AMOUNT" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CURRENCY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DATE_ISSUED" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UP_BY" Type="Int32" />
+    <Property Name="UP_AT" Type="DateTime" Precision="3" />
+    <Property Name="GIUD" Type="Guid" Nullable="false" />
+    <Property Name="REFERENCE" Type="String" MaxLength="160" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="COMPANY" Relationship="Self.FK_COMPANY_PAYMENT_COMPANY1" FromRole="COMPANY_PAYMENT" ToRole="COMPANY" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_COMPANY_PAYMENT_COMPANY" FromRole="COMPANY_PAYMENT" ToRole="CUSTOMER" />
+    <NavigationProperty Name="CUSTOMER1" Relationship="Self.FK_COMPANY_PAYMENT_CUSTOMER" FromRole="COMPANY_PAYMENT" ToRole="CUSTOMER" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_COMPANY_PAYMENT_USER" FromRole="COMPANY_PAYMENT" ToRole="USER" />
+    <NavigationProperty Name="USER1" Relationship="Self.FK_COMPANY_PAYMENT_USER1" FromRole="COMPANY_PAYMENT" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ADDRESS_LINE1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ADDRESS_LINE2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="POST_CODE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_DELETED" Type="Boolean" Nullable="false" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UP_BY" Type="Int32" />
+    <Property Name="UP_AT" Type="DateTime" Precision="3" />
+    <Property Name="LOGO_PATH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AGREEMENT_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AGREEMENT_PATH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CONTACT_USERID" Type="Int32" Nullable="false" />
+    <Property Name="CONTACT_NAME" Type="String" MaxLength="35" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="GUID" Type="Guid" Nullable="false" />
+    <Property Name="VALID_FROM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="VALID_UNTIL" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="COMPANY_PAYMENT" Relationship="Self.FK_COMPANY_PAYMENT_COMPANY" FromRole="CUSTOMER" ToRole="COMPANY_PAYMENT" />
+    <NavigationProperty Name="COMPANY_PAYMENT1" Relationship="Self.FK_COMPANY_PAYMENT_CUSTOMER" FromRole="CUSTOMER" ToRole="COMPANY_PAYMENT" />
+  </EntityType>
+  <EntityType Name="GLOBALSETTING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VALUE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PROJECT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CODE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="IS_DELETED" Type="Boolean" Nullable="false" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UP_BY" Type="Int32" />
+    <Property Name="UP_AT" Type="DateTime" Precision="3" />
+    <Property Name="LOGO_PATH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_CLOSED" Type="Boolean" Nullable="false" />
+    <Property Name="WEBSITE_PATH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="GUID" Type="Guid" Nullable="false" />
+    <Property Name="VALID_FROM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="VALID_UNTIL" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="COMPANY" Relationship="Self.FK_PROJECT_COMPANY" FromRole="PROJECT" ToRole="COMPANY" />
+    <NavigationProperty Name="PROJECT_USERPOOL" Relationship="Self.FK_PROJECT_USERPOOL_PROJECT" FromRole="PROJECT" ToRole="PROJECT_USERPOOL" />
+    <NavigationProperty Name="SPRINTs" Relationship="Self.FK_SPRINT_PROJECT" FromRole="PROJECT" ToRole="SPRINT" />
+  </EntityType>
+  <EntityType Name="PROJECT_USERPOOL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PROJECT_ID" Type="Int32" Nullable="false" />
+    <Property Name="USER_ID" Type="Int32" Nullable="false" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="PROJECT" Relationship="Self.FK_PROJECT_USERPOOL_PROJECT" FromRole="PROJECT_USERPOOL" ToRole="PROJECT" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_PROJECT_USERPOOL_USER" FromRole="PROJECT_USERPOOL" ToRole="USER" />
+    <NavigationProperty Name="USER1" Relationship="Self.FK_PROJECT_USERPOOL_USER1" FromRole="PROJECT_USERPOOL" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GUID" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SPRINT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PROJECT_ID" Type="Int32" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CODE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="IS_DELETED" Type="Boolean" Nullable="false" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UP_BY" Type="Int32" />
+    <Property Name="UP_AT" Type="DateTime" Precision="3" />
+    <Property Name="IS_CLOSED" Type="Boolean" Nullable="false" />
+    <Property Name="WEBSITE_PATH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="GUID" Type="Guid" Nullable="false" />
+    <Property Name="VALID_FROM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="VALID_UNTIL" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PROJECT" Relationship="Self.FK_SPRINT_PROJECT" FromRole="SPRINT" ToRole="PROJECT" />
+    <NavigationProperty Name="SPRINT_TEAM" Relationship="Self.FK_SPRINT_TEAM_SPRINT" FromRole="SPRINT" ToRole="SPRINT_TEAM" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_SPRINT_USER" FromRole="SPRINT" ToRole="USER" />
+    <NavigationProperty Name="USER1" Relationship="Self.FK_SPRINT_USER1" FromRole="SPRINT" ToRole="USER" />
+    <NavigationProperty Name="USER_CONSUMEDTIME" Relationship="Self.FK_USER_CONSUMED_TIME_SPRINT" FromRole="SPRINT" ToRole="USER_CONSUMEDTIME" />
+  </EntityType>
+  <EntityType Name="SPRINT_TEAM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SPRINT_ID" Type="Int32" Nullable="false" />
+    <Property Name="TEAM_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="VALID_FROM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="VALID_UNTIL" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="SPRINT" Relationship="Self.FK_SPRINT_TEAM_SPRINT" FromRole="SPRINT_TEAM" ToRole="SPRINT" />
+    <NavigationProperty Name="SPRINT_TEAMMEMBER" Relationship="Self.FK_SPRINT_TEAM_MEMBER_SPRINT_TEAM" FromRole="SPRINT_TEAM" ToRole="SPRINT_TEAMMEMBER" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_SPRINT_TEAM_USER" FromRole="SPRINT_TEAM" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="SPRINT_TEAMMEMBER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEAM_ID" Type="Int32" Nullable="false" />
+    <Property Name="USER_ID" Type="Int32" Nullable="false" />
+    <Property Name="HOUR_RATE" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CURRENCY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="SPRINT_TEAM" Relationship="Self.FK_SPRINT_TEAM_MEMBER_SPRINT_TEAM" FromRole="SPRINT_TEAMMEMBER" ToRole="SPRINT_TEAM" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_SPRINT_TEAM_MEMBER_USER" FromRole="SPRINT_TEAMMEMBER" ToRole="USER" />
+    <NavigationProperty Name="USER1" Relationship="Self.FK_SPRINT_TEAM_MEMBER_USER1" FromRole="SPRINT_TEAMMEMBER" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TASK_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GUID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="USER_CONSUMEDTIME" Relationship="Self.FK_USER_CONSUMED_TIME_TASK_TYPE" FromRole="TASK_TYPE" ToRole="USER_CONSUMEDTIME" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIRST_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MIDDLE_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="LAST_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PASSWORD_HASH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SECURITY_STAMP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_LINE1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_LINE2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="POST_CODE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MOBILE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UP_BY" Type="Int32" />
+    <Property Name="UP_AT" Type="DateTime" Precision="3" />
+    <Property Name="PHOTO_PATH" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="GUID" Type="Guid" Nullable="false" />
+    <Property Name="VALID_FROM" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="VALID_UNTIL" Type="DateTime" Precision="3" />
+    <Property Name="IS_LOCKED" Type="Boolean" Nullable="false" />
+    <Property Name="IS_EMAILVERIFIED" Type="Boolean" Nullable="false" />
+    <Property Name="IS_MOBILEVERIFIED" Type="Boolean" Nullable="false" />
+    <Property Name="ACTIVATION_TOKEN" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BANK_ACCOUNTNUMBER" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BANK_ACCOUNTTITLE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BANK_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BANK_BRANCHNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="COMPANY_PAYMENT" Relationship="Self.FK_COMPANY_PAYMENT_USER" FromRole="USER" ToRole="COMPANY_PAYMENT" />
+    <NavigationProperty Name="COMPANY_PAYMENT1" Relationship="Self.FK_COMPANY_PAYMENT_USER1" FromRole="USER" ToRole="COMPANY_PAYMENT" />
+    <NavigationProperty Name="PROJECT_USERPOOL" Relationship="Self.FK_PROJECT_USERPOOL_USER" FromRole="USER" ToRole="PROJECT_USERPOOL" />
+    <NavigationProperty Name="PROJECT_USERPOOL1" Relationship="Self.FK_PROJECT_USERPOOL_USER1" FromRole="USER" ToRole="PROJECT_USERPOOL" />
+    <NavigationProperty Name="SPRINTs" Relationship="Self.FK_SPRINT_USER" FromRole="USER" ToRole="SPRINT" />
+    <NavigationProperty Name="SPRINTs1" Relationship="Self.FK_SPRINT_USER1" FromRole="USER" ToRole="SPRINT" />
+    <NavigationProperty Name="SPRINT_TEAM" Relationship="Self.FK_SPRINT_TEAM_USER" FromRole="USER" ToRole="SPRINT_TEAM" />
+    <NavigationProperty Name="SPRINT_TEAMMEMBER" Relationship="Self.FK_SPRINT_TEAM_MEMBER_USER" FromRole="USER" ToRole="SPRINT_TEAMMEMBER" />
+    <NavigationProperty Name="SPRINT_TEAMMEMBER1" Relationship="Self.FK_SPRINT_TEAM_MEMBER_USER1" FromRole="USER" ToRole="SPRINT_TEAMMEMBER" />
+    <NavigationProperty Name="USER_CONSUMEDTIME" Relationship="Self.FK_USER_CONSUMED_TIME_USER" FromRole="USER" ToRole="USER_CONSUMEDTIME" />
+    <NavigationProperty Name="USER_CONSUMEDTIME1" Relationship="Self.FK_USER_CONSUMED_TIME_USER1" FromRole="USER" ToRole="USER_CONSUMEDTIME" />
+    <NavigationProperty Name="USER_CONSUMEDTIME2" Relationship="Self.FK_USER_CONSUMED_TIME_USER2" FromRole="USER" ToRole="USER_CONSUMEDTIME" />
+    <NavigationProperty Name="USER_CONSUMEDTIME3" Relationship="Self.FK_USER_CONSUMED_TIME_USER3" FromRole="USER" ToRole="USER_CONSUMEDTIME" />
+    <NavigationProperty Name="USER_PAYMENT" Relationship="Self.FK_USER_PAYMENT_USER" FromRole="USER" ToRole="USER_PAYMENT" />
+    <NavigationProperty Name="USER_PAYMENT1" Relationship="Self.FK_USER_PAYMENT_USER1" FromRole="USER" ToRole="USER_PAYMENT" />
+    <NavigationProperty Name="USER_PAYMENT2" Relationship="Self.FK_USER_PAYMENT_USER3" FromRole="USER" ToRole="USER_PAYMENT" />
+  </EntityType>
+  <EntityType Name="USER_CONSUMEDTIME">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_ID" Type="Int32" Nullable="false" />
+    <Property Name="SPRINT_ID" Type="Int32" Nullable="false" />
+    <Property Name="TASK_TYPEID" Type="Int32" Nullable="false" />
+    <Property Name="FROM_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TO_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UP_BY" Type="Int32" />
+    <Property Name="UP_AT" Type="DateTime" Precision="3" />
+    <Property Name="DEL_BY" Type="Int32" />
+    <Property Name="DEL_AT" Type="DateTime" Precision="3" />
+    <Property Name="AMOUNT" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CURRENCY" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IS_PAID" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SPRINT" Relationship="Self.FK_USER_CONSUMED_TIME_SPRINT" FromRole="USER_CONSUMEDTIME" ToRole="SPRINT" />
+    <NavigationProperty Name="TASK_TYPE" Relationship="Self.FK_USER_CONSUMED_TIME_TASK_TYPE" FromRole="USER_CONSUMEDTIME" ToRole="TASK_TYPE" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_USER_CONSUMED_TIME_USER" FromRole="USER_CONSUMEDTIME" ToRole="USER" />
+    <NavigationProperty Name="USER1" Relationship="Self.FK_USER_CONSUMED_TIME_USER1" FromRole="USER_CONSUMEDTIME" ToRole="USER" />
+    <NavigationProperty Name="USER2" Relationship="Self.FK_USER_CONSUMED_TIME_USER2" FromRole="USER_CONSUMEDTIME" ToRole="USER" />
+    <NavigationProperty Name="USER3" Relationship="Self.FK_USER_CONSUMED_TIME_USER3" FromRole="USER_CONSUMEDTIME" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="USER_PAYMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FROM_COMPANYID" Type="Int32" Nullable="false" />
+    <Property Name="TO_USERID" Type="Int32" Nullable="false" />
+    <Property Name="AMOUNT" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CURRENCY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DATE_ISSUED" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CR_BY" Type="Int32" Nullable="false" />
+    <Property Name="CR_AT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UP_BY" Type="Int32" />
+    <Property Name="UP_AT" Type="DateTime" Precision="3" />
+    <Property Name="GIUD" Type="Guid" Nullable="false" />
+    <Property Name="REFERENCE" Type="String" MaxLength="160" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="COMPANY" Relationship="Self.FK_USER_PAYMENT_COMPANY" FromRole="USER_PAYMENT" ToRole="COMPANY" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_USER_PAYMENT_USER" FromRole="USER_PAYMENT" ToRole="USER" />
+    <NavigationProperty Name="USER1" Relationship="Self.FK_USER_PAYMENT_USER1" FromRole="USER_PAYMENT" ToRole="USER" />
+    <NavigationProperty Name="USER2" Relationship="Self.FK_USER_PAYMENT_USER3" FromRole="USER_PAYMENT" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="DBVERSION">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="VERSION_No" />
+      <PropertyRef Name="CREATEDDATE" />
+      <PropertyRef Name="SCRIPT_NAME" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="VERSION_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CREATEDDATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NOTE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SCRIPT_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_COMPANY_ADMIN_COMPANY">
+    <End Role="COMPANY" Type="Self.COMPANY" Multiplicity="1" />
+    <End Role="COMPANY_ADMIN" Type="Self.COMPANY_ADMIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPANY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="COMPANY_ADMIN">
+        <PropertyRef Name="COMPANY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPANY_PAYMENT_COMPANY1">
+    <End Role="COMPANY" Type="Self.COMPANY" Multiplicity="1" />
+    <End Role="COMPANY_PAYMENT" Type="Self.COMPANY_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPANY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="COMPANY_PAYMENT">
+        <PropertyRef Name="TO_COMPANYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT_COMPANY">
+    <End Role="COMPANY" Type="Self.COMPANY" Multiplicity="1" />
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPANY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PROJECT">
+        <PropertyRef Name="COMPANY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_PAYMENT_COMPANY">
+    <End Role="COMPANY" Type="Self.COMPANY" Multiplicity="1" />
+    <End Role="USER_PAYMENT" Type="Self.USER_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPANY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_PAYMENT">
+        <PropertyRef Name="FROM_COMPANYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPANY_ADMIN_COMPANY_ADMIN">
+    <End Role="COMPANY_ADMIN" Type="Self.COMPANY_ADMIN" Multiplicity="1" />
+    <End Role="COMPANY_ADMIN1" Type="Self.COMPANY_ADMIN" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="COMPANY_ADMIN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="COMPANY_ADMIN1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPANY_PAYMENT_COMPANY">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="COMPANY_PAYMENT" Type="Self.COMPANY_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="COMPANY_PAYMENT">
+        <PropertyRef Name="FROM_CUSTOMERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPANY_PAYMENT_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="COMPANY_PAYMENT" Type="Self.COMPANY_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="COMPANY_PAYMENT">
+        <PropertyRef Name="TO_COMPANYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPANY_PAYMENT_USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="COMPANY_PAYMENT" Type="Self.COMPANY_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="COMPANY_PAYMENT">
+        <PropertyRef Name="CR_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPANY_PAYMENT_USER1">
+    <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="COMPANY_PAYMENT" Type="Self.COMPANY_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="COMPANY_PAYMENT">
+        <PropertyRef Name="UP_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT_USERPOOL_PROJECT">
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="1" />
+    <End Role="PROJECT_USERPOOL" Type="Self.PROJECT_USERPOOL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PROJECT_USERPOOL">
+        <PropertyRef Name="PROJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SPRINT_PROJECT">
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="1" />
+    <End Role="SPRINT" Type="Self.SPRINT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SPRINT">
+        <PropertyRef Name="PROJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT_USERPOOL_USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="PROJECT_USERPOOL" Type="Self.PROJECT_USERPOOL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PROJECT_USERPOOL">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT_USERPOOL_USER1">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="PROJECT_USERPOOL" Type="Self.PROJECT_USERPOOL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PROJECT_USERPOOL">
+        <PropertyRef Name="CR_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SPRINT_TEAM_SPRINT">
+    <End Role="SPRINT" Type="Self.SPRINT" Multiplicity="1" />
+    <End Role="SPRINT_TEAM" Type="Self.SPRINT_TEAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRINT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SPRINT_TEAM">
+        <PropertyRef Name="SPRINT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SPRINT_USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="SPRINT" Type="Self.SPRINT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SPRINT">
+        <PropertyRef Name="CR_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SPRINT_USER1">
+    <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="SPRINT" Type="Self.SPRINT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SPRINT">
+        <PropertyRef Name="UP_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CONSUMED_TIME_SPRINT">
+    <End Role="SPRINT" Type="Self.SPRINT" Multiplicity="1" />
+    <End Role="USER_CONSUMEDTIME" Type="Self.USER_CONSUMEDTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRINT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CONSUMEDTIME">
+        <PropertyRef Name="SPRINT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SPRINT_TEAM_MEMBER_SPRINT_TEAM">
+    <End Role="SPRINT_TEAM" Type="Self.SPRINT_TEAM" Multiplicity="1" />
+    <End Role="SPRINT_TEAMMEMBER" Type="Self.SPRINT_TEAMMEMBER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRINT_TEAM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SPRINT_TEAMMEMBER">
+        <PropertyRef Name="TEAM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SPRINT_TEAM_USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="SPRINT_TEAM" Type="Self.SPRINT_TEAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SPRINT_TEAM">
+        <PropertyRef Name="CR_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SPRINT_TEAM_MEMBER_USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="SPRINT_TEAMMEMBER" Type="Self.SPRINT_TEAMMEMBER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SPRINT_TEAMMEMBER">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SPRINT_TEAM_MEMBER_USER1">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="SPRINT_TEAMMEMBER" Type="Self.SPRINT_TEAMMEMBER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SPRINT_TEAMMEMBER">
+        <PropertyRef Name="CR_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CONSUMED_TIME_TASK_TYPE">
+    <End Role="TASK_TYPE" Type="Self.TASK_TYPE" Multiplicity="1" />
+    <End Role="USER_CONSUMEDTIME" Type="Self.USER_CONSUMEDTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TASK_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CONSUMEDTIME">
+        <PropertyRef Name="TASK_TYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CONSUMED_TIME_USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="USER_CONSUMEDTIME" Type="Self.USER_CONSUMEDTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CONSUMEDTIME">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CONSUMED_TIME_USER1">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="USER_CONSUMEDTIME" Type="Self.USER_CONSUMEDTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CONSUMEDTIME">
+        <PropertyRef Name="CR_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CONSUMED_TIME_USER2">
+    <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="USER_CONSUMEDTIME" Type="Self.USER_CONSUMEDTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CONSUMEDTIME">
+        <PropertyRef Name="UP_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CONSUMED_TIME_USER3">
+    <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="USER_CONSUMEDTIME" Type="Self.USER_CONSUMEDTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CONSUMEDTIME">
+        <PropertyRef Name="DEL_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_PAYMENT_USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="USER_PAYMENT" Type="Self.USER_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_PAYMENT">
+        <PropertyRef Name="CR_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_PAYMENT_USER1">
+    <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="USER_PAYMENT" Type="Self.USER_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_PAYMENT">
+        <PropertyRef Name="UP_BY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_PAYMENT_USER3">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="USER_PAYMENT" Type="Self.USER_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_PAYMENT">
+        <PropertyRef Name="TO_USERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SelfTimeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="COMPANies" EntityType="Self.COMPANY" />
+    <EntitySet Name="COMPANY_ADMIN" EntityType="Self.COMPANY_ADMIN" />
+    <EntitySet Name="COMPANY_PAYMENT" EntityType="Self.COMPANY_PAYMENT" />
+    <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+    <EntitySet Name="GLOBALSETTINGs" EntityType="Self.GLOBALSETTING" />
+    <EntitySet Name="PROJECTs" EntityType="Self.PROJECT" />
+    <EntitySet Name="PROJECT_USERPOOL" EntityType="Self.PROJECT_USERPOOL" />
+    <EntitySet Name="ROLEs" EntityType="Self.ROLE" />
+    <EntitySet Name="SPRINTs" EntityType="Self.SPRINT" />
+    <EntitySet Name="SPRINT_TEAM" EntityType="Self.SPRINT_TEAM" />
+    <EntitySet Name="SPRINT_TEAMMEMBER" EntityType="Self.SPRINT_TEAMMEMBER" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TASK_TYPE" EntityType="Self.TASK_TYPE" />
+    <EntitySet Name="USERs" EntityType="Self.USER" />
+    <EntitySet Name="USER_CONSUMEDTIME" EntityType="Self.USER_CONSUMEDTIME" />
+    <EntitySet Name="USER_PAYMENT" EntityType="Self.USER_PAYMENT" />
+    <EntitySet Name="DBVERSIONs" EntityType="Self.DBVERSION" />
+    <AssociationSet Name="FK_COMPANY_ADMIN_COMPANY" Association="Self.FK_COMPANY_ADMIN_COMPANY">
+      <End Role="COMPANY" EntitySet="COMPANies" />
+      <End Role="COMPANY_ADMIN" EntitySet="COMPANY_ADMIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPANY_PAYMENT_COMPANY1" Association="Self.FK_COMPANY_PAYMENT_COMPANY1">
+      <End Role="COMPANY" EntitySet="COMPANies" />
+      <End Role="COMPANY_PAYMENT" EntitySet="COMPANY_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT_COMPANY" Association="Self.FK_PROJECT_COMPANY">
+      <End Role="COMPANY" EntitySet="COMPANies" />
+      <End Role="PROJECT" EntitySet="PROJECTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_PAYMENT_COMPANY" Association="Self.FK_USER_PAYMENT_COMPANY">
+      <End Role="COMPANY" EntitySet="COMPANies" />
+      <End Role="USER_PAYMENT" EntitySet="USER_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPANY_ADMIN_COMPANY_ADMIN" Association="Self.FK_COMPANY_ADMIN_COMPANY_ADMIN">
+      <End Role="COMPANY_ADMIN" EntitySet="COMPANY_ADMIN" />
+      <End Role="COMPANY_ADMIN1" EntitySet="COMPANY_ADMIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPANY_PAYMENT_COMPANY" Association="Self.FK_COMPANY_PAYMENT_COMPANY">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="COMPANY_PAYMENT" EntitySet="COMPANY_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPANY_PAYMENT_CUSTOMER" Association="Self.FK_COMPANY_PAYMENT_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="COMPANY_PAYMENT" EntitySet="COMPANY_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPANY_PAYMENT_USER" Association="Self.FK_COMPANY_PAYMENT_USER">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="COMPANY_PAYMENT" EntitySet="COMPANY_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPANY_PAYMENT_USER1" Association="Self.FK_COMPANY_PAYMENT_USER1">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="COMPANY_PAYMENT" EntitySet="COMPANY_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT_USERPOOL_PROJECT" Association="Self.FK_PROJECT_USERPOOL_PROJECT">
+      <End Role="PROJECT" EntitySet="PROJECTs" />
+      <End Role="PROJECT_USERPOOL" EntitySet="PROJECT_USERPOOL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SPRINT_PROJECT" Association="Self.FK_SPRINT_PROJECT">
+      <End Role="PROJECT" EntitySet="PROJECTs" />
+      <End Role="SPRINT" EntitySet="SPRINTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT_USERPOOL_USER" Association="Self.FK_PROJECT_USERPOOL_USER">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="PROJECT_USERPOOL" EntitySet="PROJECT_USERPOOL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT_USERPOOL_USER1" Association="Self.FK_PROJECT_USERPOOL_USER1">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="PROJECT_USERPOOL" EntitySet="PROJECT_USERPOOL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SPRINT_TEAM_SPRINT" Association="Self.FK_SPRINT_TEAM_SPRINT">
+      <End Role="SPRINT" EntitySet="SPRINTs" />
+      <End Role="SPRINT_TEAM" EntitySet="SPRINT_TEAM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SPRINT_USER" Association="Self.FK_SPRINT_USER">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="SPRINT" EntitySet="SPRINTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SPRINT_USER1" Association="Self.FK_SPRINT_USER1">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="SPRINT" EntitySet="SPRINTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CONSUMED_TIME_SPRINT" Association="Self.FK_USER_CONSUMED_TIME_SPRINT">
+      <End Role="SPRINT" EntitySet="SPRINTs" />
+      <End Role="USER_CONSUMEDTIME" EntitySet="USER_CONSUMEDTIME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SPRINT_TEAM_MEMBER_SPRINT_TEAM" Association="Self.FK_SPRINT_TEAM_MEMBER_SPRINT_TEAM">
+      <End Role="SPRINT_TEAM" EntitySet="SPRINT_TEAM" />
+      <End Role="SPRINT_TEAMMEMBER" EntitySet="SPRINT_TEAMMEMBER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SPRINT_TEAM_USER" Association="Self.FK_SPRINT_TEAM_USER">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="SPRINT_TEAM" EntitySet="SPRINT_TEAM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SPRINT_TEAM_MEMBER_USER" Association="Self.FK_SPRINT_TEAM_MEMBER_USER">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="SPRINT_TEAMMEMBER" EntitySet="SPRINT_TEAMMEMBER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SPRINT_TEAM_MEMBER_USER1" Association="Self.FK_SPRINT_TEAM_MEMBER_USER1">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="SPRINT_TEAMMEMBER" EntitySet="SPRINT_TEAMMEMBER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CONSUMED_TIME_TASK_TYPE" Association="Self.FK_USER_CONSUMED_TIME_TASK_TYPE">
+      <End Role="TASK_TYPE" EntitySet="TASK_TYPE" />
+      <End Role="USER_CONSUMEDTIME" EntitySet="USER_CONSUMEDTIME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CONSUMED_TIME_USER" Association="Self.FK_USER_CONSUMED_TIME_USER">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="USER_CONSUMEDTIME" EntitySet="USER_CONSUMEDTIME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CONSUMED_TIME_USER1" Association="Self.FK_USER_CONSUMED_TIME_USER1">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="USER_CONSUMEDTIME" EntitySet="USER_CONSUMEDTIME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CONSUMED_TIME_USER2" Association="Self.FK_USER_CONSUMED_TIME_USER2">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="USER_CONSUMEDTIME" EntitySet="USER_CONSUMEDTIME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CONSUMED_TIME_USER3" Association="Self.FK_USER_CONSUMED_TIME_USER3">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="USER_CONSUMEDTIME" EntitySet="USER_CONSUMEDTIME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_PAYMENT_USER" Association="Self.FK_USER_PAYMENT_USER">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="USER_PAYMENT" EntitySet="USER_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_PAYMENT_USER1" Association="Self.FK_USER_PAYMENT_USER1">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="USER_PAYMENT" EntitySet="USER_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_PAYMENT_USER3" Association="Self.FK_USER_PAYMENT_USER3">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="USER_PAYMENT" EntitySet="USER_PAYMENT" />
+    </AssociationSet>
+    <FunctionImport Name="SearchCompanies" ReturnType="Collection(SelfTimeModel.SearchCompanies_Result)">
+      <Parameter Name="SearchText" Mode="In" Type="String" />
+      <Parameter Name="NumberOfRows" Mode="In" Type="Int16" />
+      <Parameter Name="ActiveOnly" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UserLogin" ReturnType="Collection(SelfTimeModel.UserLogin_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SearchCompanies_Result">
+    <Property Type="Int64" Name="ROW_NUM" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="ADDRESS_LINE1" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ADDRESS_LINE2" Nullable="false" MaxLength="200" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="Boolean" Name="IS_DELETED" Nullable="false" />
+    <Property Type="DateTime" Name="CR_AT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="CONTACT_NAME" Nullable="true" MaxLength="35" />
+    <Property Type="Guid" Name="GUID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UserLogin_Result">
+    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="256" />
+    <Property Type="Guid" Name="GUID" Nullable="false" />
+    <Property Type="Boolean" Name="USER_ACTIVE" Nullable="false" />
+    <Property Type="Boolean" Name="IS_EMAILVERIFIED" Nullable="false" />
+    <Property Type="Boolean" Name="COMPANY_ACTIVE" Nullable="true" />
+    <Property Type="String" Name="ROLE" Nullable="false" MaxLength="5" />
+    <Property Type="Int32" Name="COMPANY_ID" Nullable="true" />
+  </ComplexType>
+</Schema>

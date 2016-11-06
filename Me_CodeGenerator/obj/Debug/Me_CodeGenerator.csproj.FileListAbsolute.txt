@@ -1,0 +1,31 @@
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\obj\Debug\Me_CodeGenerator.csprojResolveAssemblyReference.cache
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\obj\Debug\ST_CodeGenerator.exe
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\obj\Debug\ST_CodeGenerator.pdb
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\ST_CodeGenerator.exe.config
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\ST_CodeGenerator.exe
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\ST_CodeGenerator.pdb
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\BSS_DataAccess.dll
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\EntityFramework.SqlServer.dll
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\BSS_DataAccess.pdb
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\EntityFramework.SqlServer.xml
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\ST_CodeGenerator.exe.config
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\ST_CodeGenerator.exe
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\ST_CodeGenerator.pdb
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\BSS_DataAccess.dll
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\EntityFramework.SqlServer.dll
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\BSS_DataAccess.pdb
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\EntityFramework.SqlServer.xml
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\obj\Debug\Me_CodeGenerator.csprojResolveAssemblyReference.cache
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\obj\Debug\ST_CodeGenerator.exe
+G:\__bashdata_2016\BSS\Repos\BSS\Src\BSS\Me_CodeGenerator\obj\Debug\ST_CodeGenerator.pdb
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\ST_CodeGenerator.exe.config
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\ST_CodeGenerator.exe
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\ST_CodeGenerator.pdb
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\BSS_DataAccess.dll
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\EntityFramework.dll
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\EntityFramework.SqlServer.dll
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\BSS_DataAccess.pdb
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\bin\Debug\EntityFramework.SqlServer.xml
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\obj\Debug\Me_CodeGenerator.csprojResolveAssemblyReference.cache
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\obj\Debug\ST_CodeGenerator.exe
+F:\Clients\Aamir\BSS\Src\BSS\Me_CodeGenerator\obj\Debug\ST_CodeGenerator.pdb

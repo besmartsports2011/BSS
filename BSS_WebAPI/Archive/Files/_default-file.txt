@@ -1,0 +1,3 @@
+﻿Please donot delete this file.
+
+It is required for 'Files' folder during deplyment to be created.

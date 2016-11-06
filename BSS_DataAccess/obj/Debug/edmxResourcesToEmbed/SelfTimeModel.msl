@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SelfTimeModelStoreContainer" CdmEntityContainer="SelfTimeEntities">
+    <EntitySetMapping Name="COMPANies">
+      <EntityTypeMapping TypeName="SelfTimeModel.COMPANY">
+        <MappingFragment StoreEntitySet="COMPANY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS_LINE1" ColumnName="ADDRESS_LINE1" />
+          <ScalarProperty Name="ADDRESS_LINE2" ColumnName="ADDRESS_LINE2" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="POST_CODE" ColumnName="POST_CODE" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="UP_BY" ColumnName="UP_BY" />
+          <ScalarProperty Name="UP_AT" ColumnName="UP_AT" />
+          <ScalarProperty Name="LOGO_PATH" ColumnName="LOGO_PATH" />
+          <ScalarProperty Name="AGREEMENT_DATE" ColumnName="AGREEMENT_DATE" />
+          <ScalarProperty Name="AGREEMENT_PATH" ColumnName="AGREEMENT_PATH" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="CONTACT_USERID" ColumnName="CONTACT_USERID" />
+          <ScalarProperty Name="CONTACT_NAME" ColumnName="CONTACT_NAME" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPANY_ADMIN">
+      <EntityTypeMapping TypeName="SelfTimeModel.COMPANY_ADMIN">
+        <MappingFragment StoreEntitySet="COMPANY_ADMIN">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPANY_PAYMENT">
+      <EntityTypeMapping TypeName="SelfTimeModel.COMPANY_PAYMENT">
+        <MappingFragment StoreEntitySet="COMPANY_PAYMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FROM_CUSTOMERID" ColumnName="FROM_CUSTOMERID" />
+          <ScalarProperty Name="TO_COMPANYID" ColumnName="TO_COMPANYID" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="CURRENCY" ColumnName="CURRENCY" />
+          <ScalarProperty Name="DATE_ISSUED" ColumnName="DATE_ISSUED" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="UP_BY" ColumnName="UP_BY" />
+          <ScalarProperty Name="UP_AT" ColumnName="UP_AT" />
+          <ScalarProperty Name="GIUD" ColumnName="GIUD" />
+          <ScalarProperty Name="REFERENCE" ColumnName="REFERENCE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERs">
+      <EntityTypeMapping TypeName="SelfTimeModel.CUSTOMER">
+        <MappingFragment StoreEntitySet="CUSTOMER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS_LINE1" ColumnName="ADDRESS_LINE1" />
+          <ScalarProperty Name="ADDRESS_LINE2" ColumnName="ADDRESS_LINE2" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="POST_CODE" ColumnName="POST_CODE" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="UP_BY" ColumnName="UP_BY" />
+          <ScalarProperty Name="UP_AT" ColumnName="UP_AT" />
+          <ScalarProperty Name="LOGO_PATH" ColumnName="LOGO_PATH" />
+          <ScalarProperty Name="AGREEMENT_DATE" ColumnName="AGREEMENT_DATE" />
+          <ScalarProperty Name="AGREEMENT_PATH" ColumnName="AGREEMENT_PATH" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="CONTACT_USERID" ColumnName="CONTACT_USERID" />
+          <ScalarProperty Name="CONTACT_NAME" ColumnName="CONTACT_NAME" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="VALID_FROM" ColumnName="VALID_FROM" />
+          <ScalarProperty Name="VALID_UNTIL" ColumnName="VALID_UNTIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GLOBALSETTINGs">
+      <EntityTypeMapping TypeName="SelfTimeModel.GLOBALSETTING">
+        <MappingFragment StoreEntitySet="GLOBALSETTING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROJECTs">
+      <EntityTypeMapping TypeName="SelfTimeModel.PROJECT">
+        <MappingFragment StoreEntitySet="PROJECT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="UP_BY" ColumnName="UP_BY" />
+          <ScalarProperty Name="UP_AT" ColumnName="UP_AT" />
+          <ScalarProperty Name="LOGO_PATH" ColumnName="LOGO_PATH" />
+          <ScalarProperty Name="IS_CLOSED" ColumnName="IS_CLOSED" />
+          <ScalarProperty Name="WEBSITE_PATH" ColumnName="WEBSITE_PATH" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="VALID_FROM" ColumnName="VALID_FROM" />
+          <ScalarProperty Name="VALID_UNTIL" ColumnName="VALID_UNTIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROJECT_USERPOOL">
+      <EntityTypeMapping TypeName="SelfTimeModel.PROJECT_USERPOOL">
+        <MappingFragment StoreEntitySet="PROJECT_USERPOOL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLEs">
+      <EntityTypeMapping TypeName="SelfTimeModel.ROLE">
+        <MappingFragment StoreEntitySet="ROLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPRINTs">
+      <EntityTypeMapping TypeName="SelfTimeModel.SPRINT">
+        <MappingFragment StoreEntitySet="SPRINT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="UP_BY" ColumnName="UP_BY" />
+          <ScalarProperty Name="UP_AT" ColumnName="UP_AT" />
+          <ScalarProperty Name="IS_CLOSED" ColumnName="IS_CLOSED" />
+          <ScalarProperty Name="WEBSITE_PATH" ColumnName="WEBSITE_PATH" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="VALID_FROM" ColumnName="VALID_FROM" />
+          <ScalarProperty Name="VALID_UNTIL" ColumnName="VALID_UNTIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPRINT_TEAM">
+      <EntityTypeMapping TypeName="SelfTimeModel.SPRINT_TEAM">
+        <MappingFragment StoreEntitySet="SPRINT_TEAM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SPRINT_ID" ColumnName="SPRINT_ID" />
+          <ScalarProperty Name="TEAM_NAME" ColumnName="TEAM_NAME" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="VALID_FROM" ColumnName="VALID_FROM" />
+          <ScalarProperty Name="VALID_UNTIL" ColumnName="VALID_UNTIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPRINT_TEAMMEMBER">
+      <EntityTypeMapping TypeName="SelfTimeModel.SPRINT_TEAMMEMBER">
+        <MappingFragment StoreEntitySet="SPRINT_TEAMMEMBER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TEAM_ID" ColumnName="TEAM_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="HOUR_RATE" ColumnName="HOUR_RATE" />
+          <ScalarProperty Name="CURRENCY" ColumnName="CURRENCY" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SelfTimeModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TASK_TYPE">
+      <EntityTypeMapping TypeName="SelfTimeModel.TASK_TYPE">
+        <MappingFragment StoreEntitySet="TASK_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERs">
+      <EntityTypeMapping TypeName="SelfTimeModel.USER">
+        <MappingFragment StoreEntitySet="USER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="PASSWORD_HASH" ColumnName="PASSWORD_HASH" />
+          <ScalarProperty Name="SECURITY_STAMP" ColumnName="SECURITY_STAMP" />
+          <ScalarProperty Name="ADDRESS_LINE1" ColumnName="ADDRESS_LINE1" />
+          <ScalarProperty Name="ADDRESS_LINE2" ColumnName="ADDRESS_LINE2" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="POST_CODE" ColumnName="POST_CODE" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="UP_BY" ColumnName="UP_BY" />
+          <ScalarProperty Name="UP_AT" ColumnName="UP_AT" />
+          <ScalarProperty Name="PHOTO_PATH" ColumnName="PHOTO_PATH" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="VALID_FROM" ColumnName="VALID_FROM" />
+          <ScalarProperty Name="VALID_UNTIL" ColumnName="VALID_UNTIL" />
+          <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
+          <ScalarProperty Name="IS_EMAILVERIFIED" ColumnName="IS_EMAILVERIFIED" />
+          <ScalarProperty Name="IS_MOBILEVERIFIED" ColumnName="IS_MOBILEVERIFIED" />
+          <ScalarProperty Name="ACTIVATION_TOKEN" ColumnName="ACTIVATION_TOKEN" />
+          <ScalarProperty Name="NIC" ColumnName="NIC" />
+          <ScalarProperty Name="BANK_ACCOUNTNUMBER" ColumnName="BANK_ACCOUNTNUMBER" />
+          <ScalarProperty Name="BANK_ACCOUNTTITLE" ColumnName="BANK_ACCOUNTTITLE" />
+          <ScalarProperty Name="BANK_NAME" ColumnName="BANK_NAME" />
+          <ScalarProperty Name="BANK_BRANCHNAME" ColumnName="BANK_BRANCHNAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_CONSUMEDTIME">
+      <EntityTypeMapping TypeName="SelfTimeModel.USER_CONSUMEDTIME">
+        <MappingFragment StoreEntitySet="USER_CONSUMEDTIME">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="SPRINT_ID" ColumnName="SPRINT_ID" />
+          <ScalarProperty Name="TASK_TYPEID" ColumnName="TASK_TYPEID" />
+          <ScalarProperty Name="FROM_TIME" ColumnName="FROM_TIME" />
+          <ScalarProperty Name="TO_TIME" ColumnName="TO_TIME" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="UP_BY" ColumnName="UP_BY" />
+          <ScalarProperty Name="UP_AT" ColumnName="UP_AT" />
+          <ScalarProperty Name="DEL_BY" ColumnName="DEL_BY" />
+          <ScalarProperty Name="DEL_AT" ColumnName="DEL_AT" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="CURRENCY" ColumnName="CURRENCY" />
+          <ScalarProperty Name="IS_PAID" ColumnName="IS_PAID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_PAYMENT">
+      <EntityTypeMapping TypeName="SelfTimeModel.USER_PAYMENT">
+        <MappingFragment StoreEntitySet="USER_PAYMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FROM_COMPANYID" ColumnName="FROM_COMPANYID" />
+          <ScalarProperty Name="TO_USERID" ColumnName="TO_USERID" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="CURRENCY" ColumnName="CURRENCY" />
+          <ScalarProperty Name="DATE_ISSUED" ColumnName="DATE_ISSUED" />
+          <ScalarProperty Name="CR_BY" ColumnName="CR_BY" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="UP_BY" ColumnName="UP_BY" />
+          <ScalarProperty Name="UP_AT" ColumnName="UP_AT" />
+          <ScalarProperty Name="GIUD" ColumnName="GIUD" />
+          <ScalarProperty Name="REFERENCE" ColumnName="REFERENCE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DBVERSIONs">
+      <EntityTypeMapping TypeName="SelfTimeModel.DBVERSION">
+        <MappingFragment StoreEntitySet="DBVERSION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VERSION_No" ColumnName="VERSION_No" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="SCRIPT_NAME" ColumnName="SCRIPT_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SearchCompanies" FunctionName="SelfTimeModel.Store.SearchCompanies">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SelfTimeModel.SearchCompanies_Result">
+          <ScalarProperty Name="ROW_NUM" ColumnName="ROW_NUM" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS_LINE1" ColumnName="ADDRESS_LINE1" />
+          <ScalarProperty Name="ADDRESS_LINE2" ColumnName="ADDRESS_LINE2" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+          <ScalarProperty Name="CR_AT" ColumnName="CR_AT" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="CONTACT_NAME" ColumnName="CONTACT_NAME" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UserLogin" FunctionName="SelfTimeModel.Store.UserLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SelfTimeModel.UserLogin_Result">
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="USER_ACTIVE" ColumnName="USER_ACTIVE" />
+          <ScalarProperty Name="IS_EMAILVERIFIED" ColumnName="IS_EMAILVERIFIED" />
+          <ScalarProperty Name="COMPANY_ACTIVE" ColumnName="COMPANY_ACTIVE" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

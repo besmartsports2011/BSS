@@ -1,0 +1,19 @@
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\BSS_DataAccess\bin\Debug\BSS_DataAccess.dll.config
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\BSS_DataAccess\bin\Debug\BSS_DataAccess.dll
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\BSS_DataAccess\bin\Debug\BSS_DataAccess.pdb
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\BSS_DataAccess\bin\Debug\EntityFramework.dll
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\BSS_DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\BSS_DataAccess\bin\Debug\EntityFramework.xml
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\BSS_DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.dll
+G:\__bashdata_2016\001. Selftime\Repos\BSS\Src\BSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.pdb
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\bin\Debug\BSS_DataAccess.dll.config
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\bin\Debug\BSS_DataAccess.dll
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\bin\Debug\BSS_DataAccess.pdb
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\bin\Debug\EntityFramework.dll
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\bin\Debug\EntityFramework.xml
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.csprojResolveAssemblyReference.cache
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.dll
+F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.pdb

@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BeSmartSportsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Attribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ControlType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MaxLength" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AttributeLovs" Relationship="Self.FK_AttributeLov_Attribute" FromRole="Attribute" ToRole="AttributeLov" />
+    <NavigationProperty Name="ProductAttributes" Relationship="Self.FK_ProductAttribute_Attribute" FromRole="Attribute" ToRole="ProductAttribute" />
+    <NavigationProperty Name="StockShipmentAttributes" Relationship="Self.FK_StockShipmentAttribute_Attribute" FromRole="Attribute" ToRole="StockShipmentAttribute" />
+  </EntityType>
+  <EntityType Name="AttributeLov">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AttibuteId" Type="Int32" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SortOrder" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Attribute" Relationship="Self.FK_AttributeLov_Attribute" FromRole="AttributeLov" ToRole="Attribute" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="QualifiedName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK_Category_Category" FromRole="Category" ToRole="Category1" />
+    <NavigationProperty Name="Category2" Relationship="Self.FK_Category_Category" FromRole="Category1" ToRole="Category" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Managers" Relationship="Self.FK_Manager_Country" FromRole="Country" ToRole="Manager" />
+  </EntityType>
+  <EntityType Name="GlobalSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProviderId" Type="Int32" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Manager_Country" FromRole="Manager" ToRole="Country" />
+    <NavigationProperty Name="Provider" Relationship="Self.FK_Manager_Provider" FromRole="Manager" ToRole="Provider" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Manager_User" FromRole="Manager" ToRole="User" />
+    <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_Manager" FromRole="Manager" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="EAN" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="ProductAttributes" Relationship="Self.FK_ProductAttribute_Product" FromRole="Product" ToRole="ProductAttribute" />
+    <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_Product" FromRole="Product" ToRole="Stock" />
+    <NavigationProperty Name="StockPurchases" Relationship="Self.FK_StockPurchase_Product" FromRole="Product" ToRole="StockPurchase" />
+    <NavigationProperty Name="StockSales" Relationship="Self.FK_StockSale_Product" FromRole="Product" ToRole="StockSale" />
+    <NavigationProperty Name="StockSaleDisputes" Relationship="Self.FK_StockSaleDispute_Product" FromRole="Product" ToRole="StockSaleDispute" />
+    <NavigationProperty Name="StockShipments" Relationship="Self.FK_StockShipment_Product" FromRole="Product" ToRole="StockShipment" />
+  </EntityType>
+  <EntityType Name="ProductAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="AttributeId" Type="Int32" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Attribute" Relationship="Self.FK_ProductAttribute_Attribute" FromRole="ProductAttribute" ToRole="Attribute" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_ProductAttribute_Product" FromRole="ProductAttribute" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WebsiteUrl" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Managers" Relationship="Self.FK_Manager_Provider" FromRole="Provider" ToRole="Manager" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Soldout" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ManagerId" Type="Int32" />
+    <Property Name="HasAssigned" Type="Boolean" />
+    <NavigationProperty Name="Manager" Relationship="Self.FK_Stock_Manager" FromRole="Stock" ToRole="Manager" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Stock_Product" FromRole="Stock" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="StockPurchase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CostPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SupplierDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_StockPurchase_Product" FromRole="StockPurchase" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="StockSale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="QuantitySold" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CourierCharges" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="PaypalCharges" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProviderCharges" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProfitAfterAllCharges" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProviderId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ManagerId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Note" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_StockSale_Product" FromRole="StockSale" ToRole="Product" />
+    <NavigationProperty Name="StockSaleDisputes" Relationship="Self.FK_StockSaleDispute_StockSale" FromRole="StockSale" ToRole="StockSaleDispute" />
+    <NavigationProperty Name="StockShipments" Relationship="Self.FK_StockShipment_StockSale" FromRole="StockSale" ToRole="StockShipment" />
+  </EntityType>
+  <EntityType Name="StockSaleDispute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="StockSaleId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="QuantityClaimed" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="QuantitySent" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CourierCharges" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="PaypalCharges" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProviderCharges" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProfitAfterAllCharges" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProviderId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ManagerId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Note" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_StockSaleDispute_Product" FromRole="StockSaleDispute" ToRole="Product" />
+    <NavigationProperty Name="StockSale" Relationship="Self.FK_StockSaleDispute_StockSale" FromRole="StockSaleDispute" ToRole="StockSale" />
+    <NavigationProperty Name="StockShipments" Relationship="Self.FK_StockShipment_StockSaleDispute" FromRole="StockSaleDispute" ToRole="StockShipment" />
+  </EntityType>
+  <EntityType Name="StockShipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="StockSaleId" Type="Int32" />
+    <Property Name="StockSaleDisputeId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="QuantityShipped" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ManagerId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Note" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_StockShipment_Product" FromRole="StockShipment" ToRole="Product" />
+    <NavigationProperty Name="StockSale" Relationship="Self.FK_StockShipment_StockSale" FromRole="StockShipment" ToRole="StockSale" />
+    <NavigationProperty Name="StockSaleDispute" Relationship="Self.FK_StockShipment_StockSaleDispute" FromRole="StockShipment" ToRole="StockSaleDispute" />
+    <NavigationProperty Name="StockShipmentAttributes" Relationship="Self.FK_StockShipmentAttribute_StockShipment" FromRole="StockShipment" ToRole="StockShipmentAttribute" />
+  </EntityType>
+  <EntityType Name="StockShipmentAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StockShipmentId" Type="Int32" Nullable="false" />
+    <Property Name="AttributeId" Type="Int32" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Attribute" Relationship="Self.FK_StockShipmentAttribute_Attribute" FromRole="StockShipmentAttribute" ToRole="Attribute" />
+    <NavigationProperty Name="StockShipment" Relationship="Self.FK_StockShipmentAttribute_StockShipment" FromRole="StockShipmentAttribute" ToRole="StockShipment" />
+  </EntityType>
+  <EntityType Name="SuperAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_SuperAdmin_User" FromRole="SuperAdmin" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddressLine_1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine_2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Cr_By" Type="Int32" Nullable="false" />
+    <Property Name="Cr_At" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Up_By" Type="Int32" />
+    <Property Name="Up_At" Type="DateTime" Precision="3" />
+    <Property Name="PhotoPath" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IsEmailVerified" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Token" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Managers" Relationship="Self.FK_Manager_User" FromRole="User" ToRole="Manager" />
+    <NavigationProperty Name="SuperAdmins" Relationship="Self.FK_SuperAdmin_User" FromRole="User" ToRole="SuperAdmin" />
+  </EntityType>
+  <Association Name="FK_AttributeLov_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="1" />
+    <End Role="AttributeLov" Type="Self.AttributeLov" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attribute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttributeLov">
+        <PropertyRef Name="AttibuteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductAttribute_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="1" />
+    <End Role="ProductAttribute" Type="Self.ProductAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attribute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductAttribute">
+        <PropertyRef Name="AttributeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipmentAttribute_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="1" />
+    <End Role="StockShipmentAttribute" Type="Self.StockShipmentAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attribute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipmentAttribute">
+        <PropertyRef Name="AttributeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manager_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manager_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="ProviderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manager_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Manager">
+    <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductAttribute_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductAttribute" Type="Self.ProductAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductAttribute">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockPurchase_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="StockPurchase" Type="Self.StockPurchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockPurchase">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockSale_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="StockSale" Type="Self.StockSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSale">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockSaleDispute_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="StockSaleDispute" Type="Self.StockSaleDispute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSaleDispute">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipment_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="StockShipment" Type="Self.StockShipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipment">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockSaleDispute_StockSale">
+    <End Role="StockSale" Type="Self.StockSale" Multiplicity="1" />
+    <End Role="StockSaleDispute" Type="Self.StockSaleDispute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSaleDispute">
+        <PropertyRef Name="StockSaleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipment_StockSale">
+    <End Role="StockSale" Type="Self.StockSale" Multiplicity="0..1" />
+    <End Role="StockShipment" Type="Self.StockShipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipment">
+        <PropertyRef Name="StockSaleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipment_StockSaleDispute">
+    <End Role="StockSaleDispute" Type="Self.StockSaleDispute" Multiplicity="0..1" />
+    <End Role="StockShipment" Type="Self.StockShipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockSaleDispute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipment">
+        <PropertyRef Name="StockSaleDisputeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipmentAttribute_StockShipment">
+    <End Role="StockShipment" Type="Self.StockShipment" Multiplicity="1" />
+    <End Role="StockShipmentAttribute" Type="Self.StockShipmentAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockShipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipmentAttribute">
+        <PropertyRef Name="StockShipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SuperAdmin_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="SuperAdmin" Type="Self.SuperAdmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SuperAdmin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BeSmartSportsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Attributes" EntityType="Self.Attribute" />
+    <EntitySet Name="AttributeLovs" EntityType="Self.AttributeLov" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="GlobalSettings" EntityType="Self.GlobalSetting" />
+    <EntitySet Name="Managers" EntityType="Self.Manager" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="ProductAttributes" EntityType="Self.ProductAttribute" />
+    <EntitySet Name="Providers" EntityType="Self.Provider" />
+    <EntitySet Name="Stocks" EntityType="Self.Stock" />
+    <EntitySet Name="StockPurchases" EntityType="Self.StockPurchase" />
+    <EntitySet Name="StockSales" EntityType="Self.StockSale" />
+    <EntitySet Name="StockSaleDisputes" EntityType="Self.StockSaleDispute" />
+    <EntitySet Name="StockShipments" EntityType="Self.StockShipment" />
+    <EntitySet Name="StockShipmentAttributes" EntityType="Self.StockShipmentAttribute" />
+    <EntitySet Name="SuperAdmins" EntityType="Self.SuperAdmin" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_AttributeLov_Attribute" Association="Self.FK_AttributeLov_Attribute">
+      <End Role="Attribute" EntitySet="Attributes" />
+      <End Role="AttributeLov" EntitySet="AttributeLovs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAttribute_Attribute" Association="Self.FK_ProductAttribute_Attribute">
+      <End Role="Attribute" EntitySet="Attributes" />
+      <End Role="ProductAttribute" EntitySet="ProductAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipmentAttribute_Attribute" Association="Self.FK_StockShipmentAttribute_Attribute">
+      <End Role="Attribute" EntitySet="Attributes" />
+      <End Role="StockShipmentAttribute" EntitySet="StockShipmentAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_Category" Association="Self.FK_Category_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Category1" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manager_Country" Association="Self.FK_Manager_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Manager" EntitySet="Managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manager_Provider" Association="Self.FK_Manager_Provider">
+      <End Role="Provider" EntitySet="Providers" />
+      <End Role="Manager" EntitySet="Managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manager_User" Association="Self.FK_Manager_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Manager" EntitySet="Managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Manager" Association="Self.FK_Stock_Manager">
+      <End Role="Manager" EntitySet="Managers" />
+      <End Role="Stock" EntitySet="Stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAttribute_Product" Association="Self.FK_ProductAttribute_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductAttribute" EntitySet="ProductAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Product" Association="Self.FK_Stock_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Stock" EntitySet="Stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockPurchase_Product" Association="Self.FK_StockPurchase_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="StockPurchase" EntitySet="StockPurchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockSale_Product" Association="Self.FK_StockSale_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="StockSale" EntitySet="StockSales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockSaleDispute_Product" Association="Self.FK_StockSaleDispute_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="StockSaleDispute" EntitySet="StockSaleDisputes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipment_Product" Association="Self.FK_StockShipment_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="StockShipment" EntitySet="StockShipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockSaleDispute_StockSale" Association="Self.FK_StockSaleDispute_StockSale">
+      <End Role="StockSale" EntitySet="StockSales" />
+      <End Role="StockSaleDispute" EntitySet="StockSaleDisputes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipment_StockSale" Association="Self.FK_StockShipment_StockSale">
+      <End Role="StockSale" EntitySet="StockSales" />
+      <End Role="StockShipment" EntitySet="StockShipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipment_StockSaleDispute" Association="Self.FK_StockShipment_StockSaleDispute">
+      <End Role="StockSaleDispute" EntitySet="StockSaleDisputes" />
+      <End Role="StockShipment" EntitySet="StockShipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipmentAttribute_StockShipment" Association="Self.FK_StockShipmentAttribute_StockShipment">
+      <End Role="StockShipment" EntitySet="StockShipments" />
+      <End Role="StockShipmentAttribute" EntitySet="StockShipmentAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SuperAdmin_User" Association="Self.FK_SuperAdmin_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SuperAdmin" EntitySet="SuperAdmins" />
+    </AssociationSet>
+    <FunctionImport Name="UserLogin" ReturnType="Collection(BeSmartSportsModel.UserLogin_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="UserLogin_Result">
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="Guid" Name="Guid" Nullable="false" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="Boolean" Name="IsEmailVerified" Nullable="false" />
+    <Property Type="String" Name="ROLE" Nullable="false" MaxLength="5" />
+  </ComplexType>
+</Schema>

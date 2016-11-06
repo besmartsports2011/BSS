@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="344f21602b0345ed90d1d884ed321354" Name="Diagram1">
+        <EntityTypeShape EntityType="BeSmartSportsModel.Attribute" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.AttributeLov" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.Category" Width="1.5" PointX="1.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.Country" Width="1.5" PointX="1.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.GlobalSetting" Width="1.5" PointX="3.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.Manager" Width="1.5" PointX="3.75" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.Product" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.ProductAttribute" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.Provider" Width="1.5" PointX="1.5" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.Stock" Width="1.5" PointX="6" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.StockPurchase" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.StockSale" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.StockSaleDispute" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.StockShipment" Width="1.5" PointX="7.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.StockShipmentAttribute" Width="1.5" PointX="9.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.SuperAdmin" Width="1.5" PointX="3.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.sysdiagram" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSmartSportsModel.User" Width="1.5" PointX="1.5" PointY="31.375" IsExpanded="true" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_AttributeLov_Attribute" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_ProductAttribute_Attribute" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_StockShipmentAttribute_Attribute" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_Category_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_Manager_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_Manager_Provider" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_Manager_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_Stock_Manager" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_ProductAttribute_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_Stock_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_StockPurchase_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_StockSale_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_StockSaleDispute_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_StockShipment_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_StockSaleDispute_StockSale" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_StockShipment_StockSale" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_StockShipment_StockSaleDispute" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_StockShipmentAttribute_StockShipment" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSmartSportsModel.FK_SuperAdmin_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

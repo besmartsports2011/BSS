@@ -1,0 +1,614 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BeSmartSportsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ControlType" Type="varchar" MaxLength="200" />
+    <Property Name="MaxLength" Type="varchar" MaxLength="5" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AttributeLov">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AttibuteId" Type="int" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Note" Type="nvarchar" MaxLength="2000" />
+    <Property Name="QualifiedName" Type="nvarchar" MaxLength="500" StoreGeneratedPattern="Computed" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="ShortName" Type="varchar" MaxLength="8" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GlobalSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" />
+    <Property Name="Value" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ProviderId" Type="int" />
+    <Property Name="CountryId" Type="int" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="EAN" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="AttributeId" Type="int" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="WebsiteUrl" Type="varchar" MaxLength="125" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Soldout" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="HasAssigned" Type="bit" />
+  </EntityType>
+  <EntityType Name="StockPurchase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CostPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SupplierName" Type="varchar" MaxLength="50" />
+    <Property Name="SupplierDetail" Type="varchar" MaxLength="150" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StockSale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="QuantitySold" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Currency" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SalePrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CourierCharges" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="PaypalCharges" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProviderCharges" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProfitAfterAllCharges" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProviderId" Type="varchar" MaxLength="50" />
+    <Property Name="ManagerId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Note" Type="varchar" MaxLength="150" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CustomerId" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerUrl" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="StockSaleDispute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StockSaleId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="QuantityClaimed" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="QuantitySent" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CourierCharges" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="PaypalCharges" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProviderCharges" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProfitAfterAllCharges" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProviderId" Type="varchar" MaxLength="50" />
+    <Property Name="ManagerId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Note" Type="varchar" MaxLength="150" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StockShipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StockSaleId" Type="int" />
+    <Property Name="StockSaleDisputeId" Type="int" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="QuantityShipped" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ManagerId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Note" Type="varchar" MaxLength="150" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StockShipmentAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StockShipmentId" Type="int" Nullable="false" />
+    <Property Name="AttributeId" Type="int" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SuperAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="25" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="25" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AddressLine_1" Type="nvarchar" MaxLength="200" />
+    <Property Name="AddressLine_2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Province" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="12" />
+    <Property Name="Phone" Type="varchar" MaxLength="10" />
+    <Property Name="Mobile" Type="varchar" MaxLength="30" />
+    <Property Name="Cr_By" Type="int" Nullable="false" />
+    <Property Name="Cr_At" Type="datetime" Nullable="false" />
+    <Property Name="Up_By" Type="int" />
+    <Property Name="Up_At" Type="datetime" />
+    <Property Name="PhotoPath" Type="varchar" MaxLength="250" />
+    <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Token" Type="varchar" MaxLength="16" />
+  </EntityType>
+  <Association Name="FK_AttributeLov_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="1" />
+    <End Role="AttributeLov" Type="Self.AttributeLov" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attribute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttributeLov">
+        <PropertyRef Name="AttibuteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manager_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manager_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="ProviderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manager_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductAttribute_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="1" />
+    <End Role="ProductAttribute" Type="Self.ProductAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attribute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductAttribute">
+        <PropertyRef Name="AttributeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductAttribute_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductAttribute" Type="Self.ProductAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductAttribute">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Manager">
+    <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockPurchase_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="StockPurchase" Type="Self.StockPurchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockPurchase">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockSale_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="StockSale" Type="Self.StockSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSale">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockSaleDispute_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="StockSaleDispute" Type="Self.StockSaleDispute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSaleDispute">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockSaleDispute_StockSale">
+    <End Role="StockSale" Type="Self.StockSale" Multiplicity="1" />
+    <End Role="StockSaleDispute" Type="Self.StockSaleDispute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSaleDispute">
+        <PropertyRef Name="StockSaleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipment_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="StockShipment" Type="Self.StockShipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipment">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipment_StockSale">
+    <End Role="StockSale" Type="Self.StockSale" Multiplicity="0..1" />
+    <End Role="StockShipment" Type="Self.StockShipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipment">
+        <PropertyRef Name="StockSaleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipment_StockSaleDispute">
+    <End Role="StockSaleDispute" Type="Self.StockSaleDispute" Multiplicity="0..1" />
+    <End Role="StockShipment" Type="Self.StockShipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockSaleDispute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipment">
+        <PropertyRef Name="StockSaleDisputeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipmentAttribute_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="1" />
+    <End Role="StockShipmentAttribute" Type="Self.StockShipmentAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attribute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipmentAttribute">
+        <PropertyRef Name="AttributeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockShipmentAttribute_StockShipment">
+    <End Role="StockShipment" Type="Self.StockShipment" Multiplicity="1" />
+    <End Role="StockShipmentAttribute" Type="Self.StockShipmentAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockShipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockShipmentAttribute">
+        <PropertyRef Name="StockShipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SuperAdmin_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="SuperAdmin" Type="Self.SuperAdmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SuperAdmin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="BeSmartSportsModelStoreContainer">
+    <EntitySet Name="Attribute" EntityType="Self.Attribute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AttributeLov" EntityType="Self.AttributeLov" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GlobalSetting" EntityType="Self.GlobalSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductAttribute" EntityType="Self.ProductAttribute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockPurchase" EntityType="Self.StockPurchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockSale" EntityType="Self.StockSale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockSaleDispute" EntityType="Self.StockSaleDispute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockShipment" EntityType="Self.StockShipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockShipmentAttribute" EntityType="Self.StockShipmentAttribute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SuperAdmin" EntityType="Self.SuperAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AttributeLov_Attribute" Association="Self.FK_AttributeLov_Attribute">
+      <End Role="Attribute" EntitySet="Attribute" />
+      <End Role="AttributeLov" EntitySet="AttributeLov" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_Category" Association="Self.FK_Category_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Category1" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manager_Country" Association="Self.FK_Manager_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Manager" EntitySet="Manager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manager_Provider" Association="Self.FK_Manager_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="Manager" EntitySet="Manager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manager_User" Association="Self.FK_Manager_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Manager" EntitySet="Manager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAttribute_Attribute" Association="Self.FK_ProductAttribute_Attribute">
+      <End Role="Attribute" EntitySet="Attribute" />
+      <End Role="ProductAttribute" EntitySet="ProductAttribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAttribute_Product" Association="Self.FK_ProductAttribute_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductAttribute" EntitySet="ProductAttribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Manager" Association="Self.FK_Stock_Manager">
+      <End Role="Manager" EntitySet="Manager" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Product" Association="Self.FK_Stock_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockPurchase_Product" Association="Self.FK_StockPurchase_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="StockPurchase" EntitySet="StockPurchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockSale_Product" Association="Self.FK_StockSale_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="StockSale" EntitySet="StockSale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockSaleDispute_Product" Association="Self.FK_StockSaleDispute_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="StockSaleDispute" EntitySet="StockSaleDispute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockSaleDispute_StockSale" Association="Self.FK_StockSaleDispute_StockSale">
+      <End Role="StockSale" EntitySet="StockSale" />
+      <End Role="StockSaleDispute" EntitySet="StockSaleDispute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipment_Product" Association="Self.FK_StockShipment_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="StockShipment" EntitySet="StockShipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipment_StockSale" Association="Self.FK_StockShipment_StockSale">
+      <End Role="StockSale" EntitySet="StockSale" />
+      <End Role="StockShipment" EntitySet="StockShipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipment_StockSaleDispute" Association="Self.FK_StockShipment_StockSaleDispute">
+      <End Role="StockSaleDispute" EntitySet="StockSaleDispute" />
+      <End Role="StockShipment" EntitySet="StockShipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipmentAttribute_Attribute" Association="Self.FK_StockShipmentAttribute_Attribute">
+      <End Role="Attribute" EntitySet="Attribute" />
+      <End Role="StockShipmentAttribute" EntitySet="StockShipmentAttribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockShipmentAttribute_StockShipment" Association="Self.FK_StockShipmentAttribute_StockShipment">
+      <End Role="StockShipment" EntitySet="StockShipment" />
+      <End Role="StockShipmentAttribute" EntitySet="StockShipmentAttribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SuperAdmin_User" Association="Self.FK_SuperAdmin_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="SuperAdmin" EntitySet="SuperAdmin" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
