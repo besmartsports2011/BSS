@@ -17,3 +17,13 @@ F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\bin\Debug\EntityFramework.SqlServer.
 F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.csprojResolveAssemblyReference.cache
 F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.dll
 F:\Clients\Aamir\BSS\Src\BSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.pdb
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\bin\Debug\BSS_DataAccess.dll.config
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\bin\Debug\BSS_DataAccess.dll
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\bin\Debug\BSS_DataAccess.pdb
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\bin\Debug\EntityFramework.dll
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\bin\Debug\EntityFramework.xml
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.csprojResolveAssemblyReference.cache
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.dll
+F:\Clients\Aamir\BSS\Repos\Src\BSSClone\BSS\BSS\DSS\BSS_DataAccess\obj\Debug\BSS_DataAccess.pdb
